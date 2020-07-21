@@ -1,7 +1,11 @@
 import React from 'react';
 
-const Pokemon = () => {
-    return <div> este sera o pokemon</div>
+const Pokemon = (props) => {
+    const { match } = props;
+    const { params } = match;
+    const { pokemonId } = params;
+
+    return <div>{`este sera o a pagina do pokemon #${pokemonId}`}</div>
 };
 
 export default Pokemon;
