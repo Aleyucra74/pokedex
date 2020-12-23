@@ -20,7 +20,8 @@ const useStyles = makeStyles({
 const toFirstCharUppercase = (name) => 
     name.charAt(0).toUpperCase() + name.slice(1);
 
-const Pokedex = () => {
+const Pokedex = (props) => {
+    const {history} = props;
     const classes = useStyles();
     const [pokemonData, setPokemonData] = useState(mockData);
 
@@ -31,7 +32,7 @@ const Pokedex = () => {
 
         return (
             <Grid item xs={4} key={pokemonId}>
-                <Card>
+                <Card onClick={ () => history.push(`/${pokemonId}`) }>
                     <CardMedia
                         className={classes.cardMedia}
                         image={sprite}
