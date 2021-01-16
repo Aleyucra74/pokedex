@@ -40,6 +40,11 @@ const Pokedex = (props) => {
     const {history} = props;
     const classes = useStyles();
     const [pokemonData, setPokemonData] = useState({});
+    const [filter, setFilter] = useState("");
+
+    const handleSearchChange = (e) => {
+        setFilter(e.target.value);
+    };
 
     useEffect(() => {
         axios.get(`https://pokeapi.co/api/v2/pokemon?limit=807`)
@@ -87,7 +92,8 @@ const Pokedex = (props) => {
                 <Toolbar>
                     <div className={classes.searchContainer}>
                         <SearchIcon className={classes.searchIcon} />
-                        <TextField 
+                        <TextField
+                            onChange={handleSearchChange}
                             className={classes.searchInput} 
                             label="Pokemon"
                             variant="standard"
@@ -98,6 +104,7 @@ const Pokedex = (props) => {
             {pokemonData ? (
                 <Grid container spacing={2} className={classes.pokedexContainer}>
                     {Object.keys(pokemonData).map((pokemonId) =>
+                        pokemonData[pokemonId].name.includes(filter) &&
                         getPokemonCard(pokemonId)
                     )}
                 </Grid>
