@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, Toolbar, Grid, Card, CardMedia, CardContent, CircularProgress, Typography } from '@material-ui/core';
+import { AppBar, Toolbar, Grid, Card, CardMedia, CardContent, CircularProgress, Typography, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import mockData from './mockData';
 import { toFirstCharUppercase } from './constants';
+import SearchIcon from '@material-ui/icons/Search';
 import axios from 'axios';
 
 const useStyles = makeStyles({
@@ -67,7 +68,12 @@ const Pokedex = (props) => {
     return (
         <>
             <AppBar position="static">
-                <Toolbar />
+                <Toolbar>
+                    <div className={classes.searchContainer}>
+                        <SearchIcon className={classes.searchIcon} />
+                        <TextField className={classes.searchInput} />
+                    </div>
+                </Toolbar>
             </AppBar>
             {pokemonData ? (
                 <Grid container spacing={2} className={classes.pokedexContainer}>
